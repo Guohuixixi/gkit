@@ -20,7 +20,8 @@ func TestApplyError(t *testing.T) {
 	assert.Equal(t, app, &App{Name: "test", Version: "1.0.0"})
 	err = ApplyError[App](app, app.WithNameError(""), app.WithVersionError("1.0.0"))
 	assert.Equal(t, nameError, err)
-	fmt.Println(app)
+	err = ApplyError[App](app, app.WithNameError("test"), app.WithVersionError(""))
+	assert.Equal(t, versionError, err)
 }
 
 type App struct {
