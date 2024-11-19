@@ -15,10 +15,10 @@ func TestApply(t *testing.T) {
 
 func TestApplyError(t *testing.T) {
 	app := &App{}
-	err := ApplyError(app, app.WithNameError("test"), app.WithVersionError("1.0.0"))
+	err := ApplyError[App](app, app.WithNameError("test"), app.WithVersionError("1.0.0"))
 	require.NoError(t, err)
 	assert.Equal(t, app, &App{Name: "test", Version: "1.0.0"})
-	err = ApplyError(app, app.WithNameError(""), app.WithVersionError("1.0.0"))
+	err = ApplyError[App](app, app.WithNameError(""), app.WithVersionError("1.0.0"))
 	assert.Equal(t, nameError, err)
 	fmt.Println(app)
 }
