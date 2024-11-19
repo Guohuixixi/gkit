@@ -10,3 +10,8 @@ func TestToPtr(t *testing.T) {
 	ptr := ToPtr[string](str)
 	assert.Equal(t, &str, ptr)
 }
+
+func TestToPrtSlice(t *testing.T) {
+	src := []string{"测试字符串1", "测试字符串2"}
+	assert.Equal(t, []*string{ToPtr("测试字符串1"), ToPtr("测试字符串2")}, ToPrtSlice(src))
+}
